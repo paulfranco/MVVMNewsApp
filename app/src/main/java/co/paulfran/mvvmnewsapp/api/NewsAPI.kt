@@ -1,6 +1,6 @@
 package co.paulfran.mvvmnewsapp.api
 
-import co.paulfran.mvvmnewsapp.NewsResponse
+import co.paulfran.mvvmnewsapp.models.NewsResponse
 import co.paulfran.mvvmnewsapp.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET

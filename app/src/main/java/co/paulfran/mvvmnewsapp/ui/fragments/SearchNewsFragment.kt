@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -44,7 +45,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                 putSerializable("article", it)
             }
             findNavController().navigate(
-                R.id.action_savedNewsFragment_to_articleFragment, bundle
+                R.id.action_searchNewsFragment_to_articleFragment, bundle
             )
         }
 
@@ -78,7 +79,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e(TAG, "An Error Occurred: $message")
+                        Toast.makeText(activity, "An error occurred: $message", Toast.LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading -> {
@@ -122,7 +123,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
             if (shouldPaginate) {
                 viewModel.searchNews(etSearch.text.toString())
                 isScrolling = false
-            } 
+            }
         }
 
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
